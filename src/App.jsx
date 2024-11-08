@@ -38,7 +38,7 @@ function App() {
 
   return (
     <div className="container">
-      <h1>Select a Country to See its Capital and Weather</h1>
+      <h1>Select a capital to See its Weather</h1>
 
       <div className="dropdown">
         <button className="dropdown-btn" onClick={toggleDropdown}>

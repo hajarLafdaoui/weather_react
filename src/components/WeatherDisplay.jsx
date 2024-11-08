@@ -41,8 +41,8 @@ const WeatherDisplay = ({ selectedCity }) => {
       <h1>Weather in {selectedCity}</h1>
       {weather && weather.main ? (
         <>
-          <p>Temperature: {weather.main.temp}°C</p>
-          <p>Weather: {weather.weather[0].description}</p>
+          <p> {weather.main.temp}°</p>
+          <p> {weather.weather[0].description}</p>
         </>
       ) : (
         <p>No weather data available</p>

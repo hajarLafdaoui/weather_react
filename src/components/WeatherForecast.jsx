@@ -56,8 +56,8 @@ const WeatherForecast = ({ selectedCity }) => {
         {uniqueDays.slice(0, 5).map((forecastData, index) => (
           <div key={index} className="forecast-item">
             <p>{new Date(forecastData.dt * 1000).toLocaleDateString()}</p>
-            <p>Temp: {forecastData.main.temp}°C</p>
-            <p>Weather: {forecastData.weather[0].description}</p>
+            <p> {forecastData.main.temp}°</p>
+            <p> {forecastData.weather[0].description}</p>
           </div>
         ))}
       </div>
