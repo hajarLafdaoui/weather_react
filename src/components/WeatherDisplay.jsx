@@ -2,8 +2,8 @@ import React, { useEffect, useState } from 'react';
 
 const WeatherDisplay = ({ selectedCity }) => {
   const [weather, setWeather] = useState(null);
-  const [loading, setLoading] = useState(true); // Set initial loading state to true
-  const [error, setError] = useState(null); // Add error state to handle errors
+  const [loading, setLoading] = useState(true); 
+  const [error, setError] = useState(null); 
 
   const apiKey = '9060bd1d3a6fb963d29e880953d842ed';
   const apiUrl = `https://api.openweathermap.org/data/2.5/weather?q=${selectedCity}&appid=${apiKey}&units=metric`;
@@ -24,11 +24,8 @@ const WeatherDisplay = ({ selectedCity }) => {
   };
 
   useEffect(() => {
-    if (selectedCity) {
-      setLoading(true); // Start loading when a new city is selected
-      setError(null); // Clear previous errors
-      getWeatherData();
-    }
+    setError(null); 
+    getWeatherData();
   }, [selectedCity]);
 
   if (loading) {
@@ -36,7 +33,7 @@ const WeatherDisplay = ({ selectedCity }) => {
   }
 
   if (error) {
-    return <p>Error: {error}</p>; // Display the error if any
+    return <p>Error: {error}</p>;
   }
 
   return (

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import WeatherDisplay from './components/WeatherDisplay';
+import WeatherForecast from './components/WeatherForecast';
 import './App.css';
 
 function App() {
@@ -39,7 +40,6 @@ function App() {
     <div className="container">
       <h1>Select a Country to See its Capital and Weather</h1>
 
-      {/* Custom Dropdown */}
       <div className="dropdown">
         <button className="dropdown-btn" onClick={toggleDropdown}>
           {selectedCity ? selectedCity : 'Select a Country'}
@@ -52,12 +52,12 @@ function App() {
                 key={index} 
                 className="dropdown-item" 
                 onClick={() => handleSelectCountry(country.capital[0])}
-              >
+              >                
                 <img 
-                  src={country.flags[0]} 
+                  src={country.flags.png} 
                   alt={country.name.common} 
-                  width="20" 
-                  height="15" 
+                  width="20px" 
+                  height="15px" 
                   className="flag-img"
                 />
                 <span>{country.name.common} - {country.capital[0]}</span>
@@ -67,8 +67,8 @@ function App() {
         )}
       </div>
 
-      {/* Only render WeatherDisplay if a city is selected */}
       {selectedCity && <WeatherDisplay selectedCity={selectedCity} />}
+      {selectedCity && <WeatherForecast selectedCity={selectedCity} />}
     </div>
   );
 }
