@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { weatherIconMapping } from './iconMapping';
 
 const WeatherDisplay = ({ selectedCity }) => {
   const [weather, setWeather] = useState(null);
@@ -18,13 +20,13 @@ const WeatherDisplay = ({ selectedCity }) => {
       setWeather(data);
       setLoading(false);
     } catch (error) {
-      setError(error.message); // Set the error message
-      setLoading(false); // Stop loading even if there's an error
+      setError(error.message);
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    setError(null); 
+    setError(null);
     getWeatherData();
   }, [selectedCity]);
 
@@ -36,13 +38,19 @@ const WeatherDisplay = ({ selectedCity }) => {
     return <p>Error: {error}</p>;
   }
 
+  const iconCode = weather.weather[0].icon;
+  const { icon, color } = weatherIconMapping[iconCode] || {}; 
+
   return (
     <div>
       <h1>Weather in {selectedCity}</h1>
       {weather && weather.main ? (
         <>
-          <p> {weather.main.temp}°</p>
-          <p> {weather.weather[0].description}</p>
+          <p>{weather.main.temp}°</p>
+          <p>{weather.weather[0].description}</p>
+          {icon && (
+            <FontAwesomeIcon icon={icon} color={color} size="3x" />
+          )}
         </>
       ) : (
         <p>No weather data available</p>

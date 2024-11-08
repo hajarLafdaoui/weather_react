@@ -33,7 +33,7 @@ function App() {
 
   const handleSelectCountry = (capital) => {
     setSelectedCity(capital);
-    setDropdownOpen(false); // Close the dropdown after selecting
+    setDropdownOpen(false); 
   };
 
   return (

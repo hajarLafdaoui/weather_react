@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from 'react';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { weatherIconMapping } from './iconMapping';
 
 const WeatherForecast = ({ selectedCity }) => {
   const [forecast, setForecast] = useState([]);
@@ -15,7 +17,7 @@ const WeatherForecast = ({ selectedCity }) => {
         throw new Error('City not found');
       }
       const data = await response.json();
-      setForecast(data.list); // The forecast data comes in a list, each entry for a 3-hour interval
+      setForecast(data.list);
       setLoading(false);
     } catch (error) {
       setError(error.message);
@@ -24,9 +26,9 @@ const WeatherForecast = ({ selectedCity }) => {
   };
 
   useEffect(() => {
-      setLoading(true);
-      setError(null);
-      getForecastData();
+    setLoading(true);
+    setError(null);
+    getForecastData();
   }, [selectedCity]);
 
   if (loading) {
@@ -37,7 +39,6 @@ const WeatherForecast = ({ selectedCity }) => {
     return <p>Error: {error}</p>;
   }
 
-  // Group forecast by day
   const uniqueDays = [];
   const seenDays = new Set();
 
@@ -51,15 +52,23 @@ const WeatherForecast = ({ selectedCity }) => {
 
   return (
     <div>
-      <h2>5-Day Forecast for {selectedCity} </h2>
+      <h2>5-Day Forecast for {selectedCity}</h2>
       <div className="forecast">
-        {uniqueDays.slice(0, 5).map((forecastData, index) => (
-          <div key={index} className="forecast-item">
-            <p>{new Date(forecastData.dt * 1000).toLocaleDateString()}</p>
-            <p> {forecastData.main.temp}°</p>
-            <p> {forecastData.weather[0].description}</p>
-          </div>
-        ))}
+        {uniqueDays.slice(0, 5).map((forecastData, index) => {
+          const iconCode = forecastData.weather[0].icon;
+          const { icon, color } = weatherIconMapping[iconCode] || {};
+
+          return (
+            <div key={index} className="forecast-item">
+              <p>{new Date(forecastData.dt * 1000).toLocaleDateString()}</p>
+              <p>{forecastData.main.temp}°</p>
+              <p>{forecastData.weather[0].description}</p>
+              {icon && (
+                <FontAwesomeIcon icon={icon} color={color} size="2x" />
+              )}
+            </div>
+          );
+        })}
       </div>
     </div>
   );
