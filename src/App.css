@@ -1,42 +1,53 @@
-#root {
-  max-width: 1280px;
+.container {
+  width: 80%;
   margin: 0 auto;
-  padding: 2rem;
   text-align: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.dropdown-btn {
+  padding: 10px 40px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #f0f0f0;
+  border: 1px solid #ccc;
+  border-radius: 5px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
+.dropdown-menu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  padding: 0 40px;
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  z-index: 100;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
-.card {
-  padding: 2em;
+.dropdown-item {
+  display: flex;
+  align-items: center;
+  /* padding: 10px 30px; */
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
 }
 
-.read-the-docs {
-  color: #888;
+.dropdown-item:hover {
+  background-color: #f9f9f9;
+}
+
+.flag-img {
+  margin-right: 10px;
+}
+
+.dropdown-item span {
+  font-size: 14px;
 }
